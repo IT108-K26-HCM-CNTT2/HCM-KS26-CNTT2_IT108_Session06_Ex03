@@ -46,7 +46,3 @@ Kết quả:
 3
 
 Vì có 3 dòng TIMEOUT hợp lệ, còn những dòng NOT TIMEOUT không được tính.
-
-5. Nộp bài
-
-Lưu bài này thành file Session06_Ex03.txt. Để file log.txt cùng thư mục rồi chạy lệnh trong PowerShell.
