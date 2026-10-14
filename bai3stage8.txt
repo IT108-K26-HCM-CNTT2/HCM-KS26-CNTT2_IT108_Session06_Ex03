@@ -1,0 +1,52 @@
+Bài Session06_Ex03: Pipeline PowerShell
+
+1. Phân tích
+
+Pipeline dùng dấu | để chuyển kết quả từ lệnh trước sang lệnh sau.
+
+Luồng xử lý:
+Get-Content log.txt
+        |
+        v
+Select-String "TIMEOUT"
+        |
+        v
+Where-Object { $_.Line -notmatch "NOT TIMEOUT" }
+        |
+        v
+.Count
+        |
+        v
+In ra số lượng TIMEOUT
+
+2. Câu lệnh PowerShell
+
+@(Get-Content ".\log.txt" | Select-String "TIMEOUT" | Where-Object { $_.Line -notmatch "NOT TIMEOUT" }).Count
+
+3. Giải thích
+
+- Get-Content dùng để đọc file log.txt.
+- Select-String dùng để tìm những dòng có chữ TIMEOUT.
+- Where-Object dùng để bỏ những dòng có chữ NOT TIMEOUT, tránh đếm nhầm.
+- .Count dùng để đếm số dòng còn lại.
+
+4. Ví dụ
+
+File log.txt:
+
+ERROR: TIMEOUT connecting to server
+INFO: Request successful
+ERROR: NOT TIMEOUT
+WARNING: TIMEOUT waiting for response
+ERROR: NOT TIMEOUT while retrying
+ERROR: TIMEOUT loading configuration
+
+Kết quả:
+
+3
+
+Vì có 3 dòng TIMEOUT hợp lệ, còn những dòng NOT TIMEOUT không được tính.
+
+5. Nộp bài
+
+Lưu bài này thành file Session06_Ex03.txt. Để file log.txt cùng thư mục rồi chạy lệnh trong PowerShell.
